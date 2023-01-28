@@ -127,6 +127,7 @@ var markAsPlayedInPlex = function (id, serverId) {
 };
 
 var openItemOnAgent = function (path, id, openFolder, serverId) {
+  path = path.replace('\/volume1\/Media\/', 'M:\\')
   if (openFolder) {
       var fwd = path.lastIndexOf('/');
       var bck = path.lastIndexOf('\\');
@@ -234,7 +235,7 @@ var clickListener = function (e) {
 
 var bindClicks = function () {
   var hasBtn = false;
-  var toolBar = jQuery("#plex-icon-toolbar-play-560").parent().parent();
+  var toolBar = jQuery('[class^=PrePlayActionBar-userRating]').parent().parent();
   toolBar.children('button').each(function (i, e) {
       if (jQuery(e).hasClass('plexextplayer'))
           hasBtn = true;
@@ -249,10 +250,10 @@ var bindClicks = function () {
   }
 
   // Cover page
-  jQuery('[class^=MetadataPosterCardOverlay-link]').each(function (i, e) {
+  jQuery('[class^=PosterCardLink-link]').each(function (i, e) {
       e = jQuery(e);
       let poster = e.parent();
-      if (poster.length === 1 && poster[0].className.trim().startsWith('MetadataPosterCardOverlay')) {
+      if (poster.length === 1 && poster[0].className.trim().startsWith('PosterCard-card')) {
           let existingButton = poster.find('.plexextplayerico');
           if (existingButton.length === 0) {
               let url = poster.find('a').attr('href');
