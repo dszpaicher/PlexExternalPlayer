@@ -235,7 +235,7 @@ var clickListener = function (e) {
 
 var bindClicks = function () {
   var hasBtn = false;
-  var toolBar = jQuery('[class^=PrePlayActionBar-userRating]').parent().parent();
+  var toolBar = jQuery('[class^=PrePlayMetadataTitleUserRating-userRating]').parent().parent();
   toolBar.children('button').each(function (i, e) {
       if (jQuery(e).hasClass('plexextplayer'))
           hasBtn = true;
